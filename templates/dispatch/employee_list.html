@@ -1,0 +1,79 @@
+﻿{% extends "dispatch/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h1>
+人員管理
+</h1>
+
+<a
+class="btn btn-primary"
+href="/employees/add/"
+>
+＋新增人員
+</a>
+
+</div>
+
+<div class="card p-4 mt-3">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>姓名</th>
+<th>電話</th>
+<th>職位</th>
+<th>可派遣</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for employee in employees %}
+
+<tr>
+
+<td>
+{{ employee.name }}
+</td>
+
+<td>
+{{ employee.phone }}
+</td>
+
+<td>
+{{ employee.position }}
+</td>
+
+<td>
+{{ employee.available|yesno:"是,否" }}
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="4">
+目前沒有人員
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+﻿{% extends "dispatch/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h1>
+車輛管理
+</h1>
+
+<a
+class="btn btn-primary"
+href="/vehicles/add/"
+>
+＋新增車輛
+</a>
+
+</div>
+
+<div class="card p-4 mt-3">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>車號</th>
+<th>名稱</th>
+<th>車型</th>
+<th>狀態</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for vehicle in vehicles %}
+
+<tr>
+
+<td>
+{{ vehicle.plate_no }}
+</td>
+
+<td>
+{{ vehicle.name }}
+</td>
+
+<td>
+{{ vehicle.vehicle_type }}
+</td>
+
+<td>
+{{ vehicle.status }}
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="4">
+目前沒有車輛
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

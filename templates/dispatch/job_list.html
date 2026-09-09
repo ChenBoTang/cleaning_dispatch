@@ -1,0 +1,89 @@
+﻿{% extends "dispatch/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h1>
+清潔案件
+</h1>
+
+<a
+class="btn btn-primary"
+href="/jobs/add/"
+>
+＋新增案件
+</a>
+
+</div>
+
+<div class="card p-4 mt-3">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>案件</th>
+<th>客戶</th>
+<th>日期</th>
+<th>時間</th>
+<th>地址</th>
+<th>狀態</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>
+{{ job.job_no }}
+</td>
+
+<td>
+{{ job.customer.name }}
+</td>
+
+<td>
+{{ job.clean_date }}
+</td>
+
+<td>
+{{ job.clean_time }}
+</td>
+
+<td>
+{{ job.address }}
+</td>
+
+<td>
+{{ job.status }}
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="6">
+目前沒有案件
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

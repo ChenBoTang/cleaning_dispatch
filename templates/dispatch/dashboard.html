@@ -1,0 +1,145 @@
+﻿{% extends "dispatch/base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">
+營運儀表板
+</h1>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="card stat">
+
+<h5>
+客戶
+</h5>
+
+<h2>
+{{ customer_count }}
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat">
+
+<h5>
+今日案件
+</h5>
+
+<h2>
+{{ today_jobs }}
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat">
+
+<h5>
+可用車輛
+</h5>
+
+<h2>
+{{ available_vehicles }}
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat">
+
+<h5>
+可派人員
+</h5>
+
+<h2>
+{{ available_employees }}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card mt-4 p-4">
+
+<h3>
+今日案件
+</h3>
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>案件編號</th>
+<th>客戶</th>
+<th>時間</th>
+<th>地址</th>
+<th>狀態</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for job in jobs %}
+
+<tr>
+
+<td>
+{{ job.job_no }}
+</td>
+
+<td>
+{{ job.customer.name }}
+</td>
+
+<td>
+{{ job.clean_time }}
+</td>
+
+<td>
+{{ job.address }}
+</td>
+
+<td>
+{{ job.status }}
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="5">
+今天沒有案件
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

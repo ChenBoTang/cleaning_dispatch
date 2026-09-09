@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>派車單</title>
+
+<style>
+
+body {
+
+    font-family:
+        "Microsoft JhengHei",
+        Arial,
+        sans-serif;
+
+    margin: 40px;
+}
+
+.sheet {
+
+    max-width: 800px;
+
+    margin: auto;
+
+    border: 1px solid #333;
+
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.row {
+
+    display: flex;
+
+    border-bottom:
+        1px solid #ddd;
+
+    padding: 12px;
+}
+
+.label {
+
+    width: 150px;
+
+    font-weight: bold;
+}
+
+button {
+
+    margin-top: 20px;
+
+    padding: 10px 20px;
+}
+
+@media print {
+
+    button {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sheet">
+
+<h1>
+清潔公司派車單
+</h1>
+
+<div class="row">
+
+<div class="label">
+案件編號
+</div>
+
+<div>
+{{ dispatch.job.job_no }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+客戶
+</div>
+
+<div>
+{{ dispatch.job.customer.name }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+電話
+</div>
+
+<div>
+{{ dispatch.job.customer.phone }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+日期
+</div>
+
+<div>
+{{ dispatch.job.clean_date }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+時間
+</div>
+
+<div>
+{{ dispatch.job.clean_time }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+地址
+</div>
+
+<div>
+{{ dispatch.job.address }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+車輛
+</div>
+
+<div>
+{{ dispatch.vehicle|default:"未指定" }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+司機
+</div>
+
+<div>
+{{ dispatch.driver|default:"未指定" }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+清潔人員
+</div>
+
+<div>
+{{ dispatch.cleaner|default:"未指定" }}
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="label">
+派車狀態
+</div>
+
+<div>
+{{ dispatch.status }}
+</div>
+
+</div>
+
+<button onclick="window.print()">
+列印
+</button>
+
+</div>
+
+</body>
+
+</html>

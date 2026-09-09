@@ -1,0 +1,102 @@
+﻿{% extends "dispatch/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between">
+
+<h1>
+派車管理
+</h1>
+
+<a
+class="btn btn-primary"
+href="/dispatch/add/"
+>
+＋新增派車
+</a>
+
+</div>
+
+<div class="card p-4 mt-3">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>案件</th>
+<th>客戶</th>
+<th>車輛</th>
+<th>司機</th>
+<th>清潔人員</th>
+<th>狀態</th>
+<th>操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for d in dispatches %}
+
+<tr>
+
+<td>
+{{ d.job.job_no }}
+</td>
+
+<td>
+{{ d.job.customer.name }}
+</td>
+
+<td>
+{{ d.vehicle|default:"未指定" }}
+</td>
+
+<td>
+{{ d.driver|default:"未指定" }}
+</td>
+
+<td>
+{{ d.cleaner|default:"未指定" }}
+</td>
+
+<td>
+{{ d.status }}
+</td>
+
+<td>
+
+<a
+class="btn btn-sm btn-secondary"
+target="_blank"
+href="/dispatch/{{ d.pk }}/print/"
+>
+列印
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="7">
+目前沒有派車資料
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}
