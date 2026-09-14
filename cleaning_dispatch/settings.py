@@ -12,6 +12,8 @@ ALLOWED_HOSTS = [
     "potang-pc.tail5f0f95.ts.net",
     "100.102.130.76",
     "django.test",
+    "192.168.1.103",
+    "10.239.0.210",
 ]
 
 CSRF_TRUSTED_ORIGINS = [

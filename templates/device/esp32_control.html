@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ESP32 控制台</title>
+    <title>ESP32 控制面板</title>
 
     <style>
         * {
@@ -52,17 +52,12 @@
             font-weight: bold;
         }
 
-        .offline {
-            color: #dc2626;
-            font-weight: bold;
-        }
-
         .led-box {
             background: #f9fafb;
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            margin-bottom: 25px;
+            margin-top: 25px;
         }
 
         .led {
@@ -94,6 +89,12 @@
 
         button:hover {
             transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .on-button {
@@ -128,7 +129,7 @@
 
     <div class="card">
 
-        <h1>ESP32 控制台</h1>
+        <h1>ESP32 控制面板</h1>
 
         <div class="device">
             裝置：
@@ -144,7 +145,7 @@
 
             <div class="led" id="led">
                 {% if command == "ON" %}
-                    💡
+                    🟢
                 {% else %}
                     ⚫
                 {% endif %}
@@ -164,7 +165,7 @@
                 <button
                     class="on-button"
                     onclick="setCommand('ON')">
-                    💡 LED ON
+                    🟢 LED ON
                 </button>
 
                 <button
@@ -180,7 +181,7 @@
         </div>
 
         <a class="back" href="/">
-            ← 回到首頁
+            ← 返回首頁
         </a>
 
     </div>
@@ -196,7 +197,7 @@ async function setCommand(command) {
     const led = document.getElementById("led");
     const state = document.getElementById("state");
 
-    message.textContent = "正在傳送指令...";
+    message.textContent = "正在送出指令...";
 
     try {
 
@@ -217,12 +218,12 @@ async function setCommand(command) {
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || "指令失敗");
+            throw new Error(data.error || "指令傳送失敗");
         }
 
         if (data.command === "ON") {
 
-            led.textContent = "💡";
+            led.textContent = "🟢";
             state.textContent = "LED：ON";
 
         } else {
@@ -232,7 +233,7 @@ async function setCommand(command) {
 
         }
 
-        message.textContent = "指令已送出";
+        message.textContent = "指令已成功送出";
 
     } catch (error) {
 

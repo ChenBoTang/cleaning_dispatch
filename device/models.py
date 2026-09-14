@@ -19,3 +19,17 @@ class ESP32Device(models.Model):
         from datetime import timedelta
 
         return timezone.now() - self.last_seen < timedelta(seconds=30)
+
+
+class RFIDCard(models.Model):
+    uid = models.CharField(max_length=50, unique=True)
+    employee = models.ForeignKey(
+        "dispatch.Employee",
+        on_delete=models.CASCADE,
+        related_name="rfid_cards"
+    )
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.employee} - {self.uid}"
